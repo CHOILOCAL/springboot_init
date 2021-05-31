@@ -1,0 +1,84 @@
+buildscript {
+    ext {
+        springBootVersion = '2.3.0.RELEASE'
+        hibernateVersion = '5.2.11.Final'
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}"
+    // 스프링 부트 의존성 관리
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group 'com.damdeeng.tour'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+// 각종 의존성(라이브러리)를 어떤 원격 저장소에서 내려 받을진
+// mavenCentral은 좀 더 난이도가 있고 공유가 어려워서 jcenter 추구
+// jcenter에 업로드하면 mavenCentral에도 자동업로드
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // swagger
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+    // email
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // H2, 인메모리 관계형 데이터베이스, 애플리케이션 재시작시 매번 초기화
+    runtime 'com.h2database:h2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // jwt
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    // spring security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // db
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.hibernate:hibernate-core'
+
+    // JPA, 추상화 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // 실시간 소스코드 반영
+    compile("org.springframework.boot:spring-boot-devtools")
+
+    // Oauth2
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+    // 개발자 도구 (클래스패스 갱신 -> 빌드 트리거)
+    compileClasspath('org.springframework.boot:spring-boot-devtools')
+
+    // mustache
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// banner.txt 설정
+bootJar {
+    manifest {
+        attributes(
+                "Implementation-Title": "${jar.baseName}",
+                "Implementation-Version": "${jar.version}"
+        )
+    }
+}
