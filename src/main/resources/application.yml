@@ -6,6 +6,7 @@ server:
       charset: UTF-8
       enabled: true
 
+# 메일
 spring:
   mail:
     host: smtp.gmail.com
@@ -18,3 +19,8 @@ spring:
           auth: true
           starttls:
             enable: true
+  security:
+    user:
+      name: admin
+      password: 1234
+      roles: ADMIN

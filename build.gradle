@@ -39,7 +39,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // H2, 인메모리 관계형 데이터베이스, 애플리케이션 재시작시 매번 초기화
+    // H2, 인메모리 관계형 데이터베이스, 애플리케이션 재시작시 매번 초기화(compile x, runtime o)
     runtime 'com.h2database:h2'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
@@ -48,6 +48,8 @@ dependencies {
 
     // spring security
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 
     // db
     implementation 'org.postgresql:postgresql'
@@ -66,7 +68,11 @@ dependencies {
     compileClasspath('org.springframework.boot:spring-boot-devtools')
 
     // mustache
-    compile('org.springframework.boot:spring-boot-starter-mustache')
+//    compile('org.springframework.boot:spring-boot-starter-mustache')
+
+    // thymleaf
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
 }
 
 test {
