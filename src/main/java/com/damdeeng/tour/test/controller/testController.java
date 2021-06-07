@@ -3,8 +3,12 @@ package com.damdeeng.tour.test.controller;
 //import io.swagger.annotations.Api;
 import com.damdeeng.tour.exception.AppError;
 import com.damdeeng.tour.exception.SampleException;
+import com.damdeeng.tour.test.repository.AccountRepository;
+import com.damdeeng.tour.test.service.AccountContext;
+import com.damdeeng.tour.test.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +21,12 @@ import java.security.Principal;
 //@Api(value = "메인 테스트")
 //@RequestMapping("/v1/api/main")
 public class testController {
+
+    @Autowired
+    AccountService accountService;
+
+    @Autowired
+    AccountRepository accountRepository;
 
 //    @RequestMapping(value="/", method = RequestMethod.GET)
     @GetMapping("/")
@@ -38,6 +48,8 @@ public class testController {
     @RequestMapping(value="/dashboard", method = RequestMethod.GET)
     public String dashboard(Model model, Principal principal) {
         model.addAttribute("message", "dashboard " + principal.getName());
+        AccountContext.setAccountThreadLocal(accountRepository.findByUsername(principal.getName()));
+        accountService.dashboard();
         return "dashboard";
     }
 

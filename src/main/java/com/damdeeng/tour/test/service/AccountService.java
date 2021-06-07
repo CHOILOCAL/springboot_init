@@ -58,4 +58,10 @@ public class AccountService implements UserDetailsService {
         Object credentials = authentication.getCredentials();
         boolean authenticated = authentication.isAuthenticated();
     }
+
+    public void dashboard() {
+        Account account = AccountContext.getAccountThreadLocal();
+        System.out.println("===============");
+        System.out.println(account.getUsername());
+    }
 }
