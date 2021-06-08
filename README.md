@@ -10,3 +10,6 @@
 - Spring security test
 - Make a annotation
 - Exception
+- H2 inmemory database
+- application.yml basic
+- data.sql (auto insert)

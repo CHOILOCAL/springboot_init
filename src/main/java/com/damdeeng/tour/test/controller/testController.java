@@ -9,6 +9,7 @@ import com.damdeeng.tour.test.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,11 @@ public class testController {
 
     @Autowired
     AccountRepository accountRepository;
+
+    @GetMapping("/api/hello")
+    public ResponseEntity<String> Hello() {
+        return ResponseEntity.ok("hello");
+    }
 
 //    @RequestMapping(value="/", method = RequestMethod.GET)
     @GetMapping("/")
