@@ -29,10 +29,10 @@ public class testController {
     @Autowired
     AccountRepository accountRepository;
 
-    @GetMapping("/api/hello")
-    public ResponseEntity<String> Hello() {
-        return ResponseEntity.ok("hello");
-    }
+//    @GetMapping("/api/hello")
+//    public ResponseEntity<String> Hello() {
+//        return ResponseEntity.ok("hello");
+//    }
 
 //    @RequestMapping(value="/", method = RequestMethod.GET)
     @GetMapping("/")

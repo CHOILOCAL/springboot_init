@@ -44,7 +44,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // jwt
-    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+//    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
+    runtime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+    runtime group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
 
     // spring security
     implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -59,7 +62,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     // validation
-//    implementation('org.springframework.boot:spring-boot-starter-validation')
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
     // 실시간 소스코드 반영
     compile("org.springframework.boot:spring-boot-devtools")
